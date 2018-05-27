@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2005
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kirkit.Score.FunctionApp", "Kirkit.Score.FunctionApp\Kirkit.Score.FunctionApp.csproj", "{D6A80A44-1A46-40E2-BC9E-EE7218C8AE14}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kirkit.Score.Data", "..\Kirkit.Score.Data\Kirkit.Score.Data.csproj", "{BC0270EA-4A05-48A2-93C0-0E3E8E250BA4}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D6A80A44-1A46-40E2-BC9E-EE7218C8AE14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D6A80A44-1A46-40E2-BC9E-EE7218C8AE14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D6A80A44-1A46-40E2-BC9E-EE7218C8AE14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D6A80A44-1A46-40E2-BC9E-EE7218C8AE14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC0270EA-4A05-48A2-93C0-0E3E8E250BA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC0270EA-4A05-48A2-93C0-0E3E8E250BA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC0270EA-4A05-48A2-93C0-0E3E8E250BA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC0270EA-4A05-48A2-93C0-0E3E8E250BA4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D0622A20-D268-4601-83DD-4E6089392D2A}
+	EndGlobalSection
+EndGlobal
