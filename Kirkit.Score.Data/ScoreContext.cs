@@ -34,7 +34,30 @@ namespace Kirkit.Score.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            var composite = new CompositeModelBuilder();
+            composite.AddModel(new BallType())
+                     .AddModel(new BallUpdate())
+                     .AddModel(new BattingScore())
+                     .AddModel(new BowlingScore())
+                     .AddModel(new Match())
+                     .AddModel(new MatchOver())
+                     .AddModel(new MatchRule())
+                     .AddModel(new MaxOverRule())
+                     .AddModel(new Player())
+                     .AddModel(new PlayerStrike())
+                     .AddModel(new PlayerTeam())
+                     .AddModel(new Powerplayrule())
+                     .AddModel(new PowerplaySlot())
+                     .AddModel(new Rule())
+                     .AddModel(new RunType())
+                     .AddModel(new ScoreBoard())
+                     .AddModel(new Team())
+                     .AddModel(new Tournament())
+                     .AddModel(new TournamentMatch())
+                     .AddModel(new TournamentRule())
+                     .AddModel(new WicketType());
 
+            composite.Build(modelBuilder);
             base.OnModelCreating(modelBuilder);
         }
 
