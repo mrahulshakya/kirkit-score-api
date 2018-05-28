@@ -4,6 +4,6 @@
     {
         public Match Match { get; set; }
 
-        public ScoreBoard {
+        public ScoreBoard score { get; set; }
     }
 }
