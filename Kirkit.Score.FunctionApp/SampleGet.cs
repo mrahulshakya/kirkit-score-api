@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.Extensions.Logging;
+using Microsoft.Azure.WebJobs.Host;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,16 +18,16 @@ namespace Kirkit.Score.Api
 
         [FunctionName("GetBallTypes")]
         public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = "references/BallType")]HttpRequest req,
-            ILogger log, [Inject] IScoreRepository repository)
+            TraceWriter log, [Inject]IScoreRepository repository)
         {
             try
             {
-                log.LogInformation($"C# HTTP trigger function processed a request.");
+                log.Info($"C# HTTP trigger function processed a request.");
 
                 IList<BallType> customers = null;
 
                 customers = await repository.GetAllBallTypes()
-                                .ConfigureAwait(false);
+                              .ConfigureAwait(false);
 
                 if (!customers.Any())
                 {
@@ -39,7 +39,7 @@ namespace Kirkit.Score.Api
             }
             catch (Exception ex)
             {
-                log.LogCritical(ex.Message, ex);
+                log.Error(ex.Message, ex);
                 throw;
             }
 

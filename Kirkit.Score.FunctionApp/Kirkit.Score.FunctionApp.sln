@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2005
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kirkit.Score.FunctionApp", "Kirkit.Score.FunctionApp\Kirkit.Score.FunctionApp.csproj", "{D6A80A44-1A46-40E2-BC9E-EE7218C8AE14}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kirkit.Score.FunctionApp", "Kirkit.Score.FunctionApp\Kirkit.Score.FunctionApp.csproj", "{D6A80A44-1A46-40E2-BC9E-EE7218C8AE14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kirkit.Score.Data", "..\Kirkit.Score.Data\Kirkit.Score.Data.csproj", "{BC0270EA-4A05-48A2-93C0-0E3E8E250BA4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kirkit.Score.Data", "..\Kirkit.Score.Data\Kirkit.Score.Data.csproj", "{BC0270EA-4A05-48A2-93C0-0E3E8E250BA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kirkit.Score.Logic", "..\Kirkit.Score.Logic\Kirkit.Score.Logic.csproj", "{6834F8ED-FA09-4FEF-BD7A-644C67D6CE09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kirkit.Score.Common", "Kirkit.Score.Common\Kirkit.Score.Common.csproj", "{0FB4EA72-238E-4733-804C-34EE9DE342DF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{BC0270EA-4A05-48A2-93C0-0E3E8E250BA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC0270EA-4A05-48A2-93C0-0E3E8E250BA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC0270EA-4A05-48A2-93C0-0E3E8E250BA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6834F8ED-FA09-4FEF-BD7A-644C67D6CE09}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6834F8ED-FA09-4FEF-BD7A-644C67D6CE09}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6834F8ED-FA09-4FEF-BD7A-644C67D6CE09}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6834F8ED-FA09-4FEF-BD7A-644C67D6CE09}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0FB4EA72-238E-4733-804C-34EE9DE342DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0FB4EA72-238E-4733-804C-34EE9DE342DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0FB4EA72-238E-4733-804C-34EE9DE342DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0FB4EA72-238E-4733-804C-34EE9DE342DF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
