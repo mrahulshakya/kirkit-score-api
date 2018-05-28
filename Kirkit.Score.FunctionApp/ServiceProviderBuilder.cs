@@ -1,4 +1,5 @@
 ﻿using Kirkit.Score.Api.DI;
+using Kirkit.Score.Common.Mapper;
 using Kirkit.Score.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -29,6 +30,8 @@ namespace Kirkit.Score.Api
             {
                 options.UseSqlServer(configuration["ConnectionStrings:Scorer"]);
             });
+
+            services.AddSingleton(new MapperInitialize().Mapper);
 
             services.AddSingleton<IConfiguration>(configuration);
             services.AddScoped<IScoreRepository, ScoreRepository>();

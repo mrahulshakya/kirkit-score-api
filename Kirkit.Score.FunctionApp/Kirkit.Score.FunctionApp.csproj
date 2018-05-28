@@ -9,6 +9,7 @@
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.6" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Kirkit.Score.Common\Kirkit.Score.Common.csproj" />
     <ProjectReference Include="..\Kirkit.Score.Data\Kirkit.Score.Data.csproj" />
   </ItemGroup>
   <ItemGroup>
