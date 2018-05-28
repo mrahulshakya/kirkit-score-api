@@ -6,9 +6,7 @@ namespace Kirkit.Score.Data.Enitity
     public class BallUpdate : IEntityModel
     {
         public int PkBallUpdate { get; set; }
-        public int FkScoreBoard { get; set; }
-        public int FkBattingTeam { get; set; }
-        public int FkBowlingTeam { get; set; }
+        public int FkInnings { get; set; }
         public int RunScored { get; set; }
         public int RunType { get; set; }
         public int BallType { get; set; }
@@ -20,7 +18,7 @@ namespace Kirkit.Score.Data.Enitity
 
         //public Team FkBattingTeamNavigation { get; set; }
         //public Team FkBowlingTeamNavigation { get; set; }
-        public ScoreBoard FkScoreBoardNavigation { get; set; }
+        public Innings FkInningsNavigation { get; set; }
 
         public void BuildModel(ModelBuilder modelBuilder)
         {
@@ -44,9 +42,9 @@ namespace Kirkit.Score.Data.Enitity
                 //    .OnDelete(DeleteBehavior.ClientSetNull)
                 //    .HasConstraintName("FK__BallUpdat__FkBow__5AB9788F");
 
-                entity.HasOne(d => d.FkScoreBoardNavigation)
+                entity.HasOne(d => d.FkInningsNavigation)
                     .WithMany(p => p.BallUpdate)
-                    .HasForeignKey(d => d.FkScoreBoard)
+                    .HasForeignKey(d => d.FkInnings)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__BallUpdat__FkSco__58D1301D");
             });

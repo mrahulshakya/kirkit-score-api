@@ -18,11 +18,5 @@ namespace Kirkit.Score.Data
         {
             return await context.BallType.ToListAsync();
         }
-
-        //public async Task<IList<Customer>> GetCustomers(int id)
-        //{
-        //    return await context.Customers.Where(x => x.CustomerId == id).ToListAsync()
-        //                .ConfigureAwait(false);
-        //}
     }
 }

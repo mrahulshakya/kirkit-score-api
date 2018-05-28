@@ -20,7 +20,6 @@ namespace Kirkit.Score.Data
         public virtual DbSet<PowerplaySlot> Powerplayslot { get; set; }
         public virtual DbSet<Rule> Rule { get; set; }
         public virtual DbSet<RunType> RunType { get; set; }
-        public virtual DbSet<ScoreBoard> ScoreBoard { get; set; }
         public virtual DbSet<Team> Team { get; set; }
         public virtual DbSet<Tournament> Tournament { get; set; }
         public virtual DbSet<TournamentMatch> TournamentMatch { get; set; }
@@ -50,12 +49,12 @@ namespace Kirkit.Score.Data
                      .AddModel(new PowerplaySlot())
                      .AddModel(new Rule())
                      .AddModel(new RunType())
-                     .AddModel(new ScoreBoard())
                      .AddModel(new Team())
                      .AddModel(new Tournament())
                      .AddModel(new TournamentMatch())
                      .AddModel(new TournamentRule())
-                     .AddModel(new WicketType());
+                     .AddModel(new WicketType())
+                     .AddModel(new Innings());
 
             composite.Build(modelBuilder);
             base.OnModelCreating(modelBuilder);

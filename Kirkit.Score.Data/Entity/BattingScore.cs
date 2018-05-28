@@ -6,7 +6,8 @@ namespace Kirkit.Score.Data.Enitity
     public class BattingScore : IEntityModel
     {
         public int PkBattingScore { get; set; }
-        public int PkPlayerId { get; set; }
+        public int FkInnings { get; set; }
+        public int PkPlayer { get; set; }
         public int RunsScored { get; set; }
         public int BallFaced { get; set; }
         public int Sixes { get; set; }
@@ -24,7 +25,7 @@ namespace Kirkit.Score.Data.Enitity
         public Player FkWicketTakenByNavigation { get; set; }
         public Player FkcatchTakenByNavigation { get; set; }
         public Player FkstumpedByNavigation { get; set; }
-        public Player PkPlayer { get; set; }
+        public Player PkPlayerNavigation { get; set; }
 
         public void BuildModel(ModelBuilder modelBuilder)
         {
@@ -58,9 +59,9 @@ namespace Kirkit.Score.Data.Enitity
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__BattingSc__FKStu__607251E5");
 
-                entity.HasOne(d => d.PkPlayer)
+                entity.HasOne(d => d.PkPlayerNavigation)
                     .WithMany(p => p.BattingScorePkPlayer)
-                    .HasForeignKey(d => d.PkPlayerId)
+                    .HasForeignKey(d => d.PkPlayer)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__BattingSc__PkPla__5D95E53A");
             });

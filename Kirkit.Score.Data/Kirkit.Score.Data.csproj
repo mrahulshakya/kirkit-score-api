@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Entity\ScoreBoard.cs" />
     <Compile Remove="Entity\scorerContext.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -11,7 +11,6 @@ namespace Kirkit.Score.Data.Enitity
             MatchOver = new HashSet<MatchOver>();
             MatchRule = new HashSet<MatchRule>();
             PlayerStrike = new HashSet<PlayerStrike>();
-            ScoreBoard = new HashSet<ScoreBoard>();
             TournamentMatch = new HashSet<TournamentMatch>();
         }
 
@@ -29,7 +28,6 @@ namespace Kirkit.Score.Data.Enitity
         public ICollection<MatchOver> MatchOver { get; set; }
         public ICollection<MatchRule> MatchRule { get; set; }
         public ICollection<PlayerStrike> PlayerStrike { get; set; }
-        public ICollection<ScoreBoard> ScoreBoard { get; set; }
         public ICollection<TournamentMatch> TournamentMatch { get; set; }
 
         public void BuildModel(ModelBuilder modelBuilder)
