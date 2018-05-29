@@ -1,6 +1,6 @@
 using Kirkit.Score.Api.DI;
 using Kirkit.Score.Data;
-using Kirkit.Score.Data.Enitity;
+using Kirkit.Score.Model.Entity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;

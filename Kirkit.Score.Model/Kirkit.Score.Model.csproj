@@ -3,11 +3,24 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
+
   <ItemGroup>
+    <None Remove="Logic\ve-F80D.tmp" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Payload\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="6.2.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.0" />
+
   </ItemGroup>
+
   <ItemGroup>
-    <ProjectReference Include="..\Kirkit.Score.Model\Kirkit.Score.Model.csproj" />
+    <ProjectReference Include="..\Kirkit.Score.Common\Kirkit.Score.Common.csproj" />
   </ItemGroup>
+
 </Project>

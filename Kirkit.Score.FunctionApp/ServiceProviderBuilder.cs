@@ -1,6 +1,6 @@
 ﻿using Kirkit.Score.Api.DI;
-using Kirkit.Score.Common.Mapper;
 using Kirkit.Score.Data;
+using Kirkit.Score.Model.Mapper;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

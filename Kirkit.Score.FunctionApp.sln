@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kirkit.Score.Data", "Kirkit
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kirkit.Score.Logic", "Kirkit.Score.Logic\Kirkit.Score.Logic.csproj", "{C6E7FEE1-FB1E-40FA-8803-3D1365C06D2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kirkit.Score.Test", "Kirkit.Score.Test\Kirkit.Score.Test.csproj", "{C0A8141F-11E4-42FA-AE88-6AE4C3622BF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Kirkit.Score.Test", "Kirkit.Score.Test\Kirkit.Score.Test.csproj", "{C0A8141F-11E4-42FA-AE88-6AE4C3622BF4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kirkit.Score.Model", "Kirkit.Score.Model\Kirkit.Score.Model.csproj", "{72433BAA-7FD2-4482-9BE7-67A93AFE6F7D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{C0A8141F-11E4-42FA-AE88-6AE4C3622BF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C0A8141F-11E4-42FA-AE88-6AE4C3622BF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C0A8141F-11E4-42FA-AE88-6AE4C3622BF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72433BAA-7FD2-4482-9BE7-67A93AFE6F7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72433BAA-7FD2-4482-9BE7-67A93AFE6F7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72433BAA-7FD2-4482-9BE7-67A93AFE6F7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72433BAA-7FD2-4482-9BE7-67A93AFE6F7D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

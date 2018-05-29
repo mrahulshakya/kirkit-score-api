@@ -1,4 +1,4 @@
-﻿using Kirkit.Score.Data.Enitity;
+﻿using Kirkit.Score.Model.Entity;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Threading.Tasks;
