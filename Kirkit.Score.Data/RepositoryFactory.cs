@@ -53,6 +53,22 @@ namespace Kirkit.Score.Data
         /// <summary>
         /// 
         /// </summary>
+        /// <param name="resource"></param>
+        /// <returns></returns>
+        public Type  GetModelType(string resource)
+        {
+            if (lazyMap.Value.ContainsKey(resource.ToLower()))
+            {
+                var type = lazyMap.Value[resource.ToLower()].GetGenericArguments()[0];
+                return type;
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
         /// <returns></returns>
         public static CompositeModelBuilder GetModels()
         {

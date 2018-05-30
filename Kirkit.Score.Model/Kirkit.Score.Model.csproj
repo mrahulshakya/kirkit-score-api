@@ -20,8 +20,4 @@
     <ProjectReference Include="..\Kirkit.Score.Common\Kirkit.Score.Common.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Payload\" />
-  </ItemGroup>
-
 </Project>
