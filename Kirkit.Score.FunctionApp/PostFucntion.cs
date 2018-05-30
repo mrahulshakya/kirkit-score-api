@@ -36,12 +36,12 @@ namespace Kirkit.Score.Api
                 {
                     return (ActionResult)new BadRequestResult();
                 }
-
-                var obj = JsonConvert.DeserializeObject(json, factory.GetModelType(resource));
+                
+                var obj = JsonConvert.DeserializeObject(json, resourceType);
 
                 var repo = factory.GetRepository(resource);
                 
-                var result = await repo.Save(obj)
+                var result = await repo.Save(Convert.ChangeType(obj, resourceType))
                               .ConfigureAwait(false);
 
                 if (result == null)

@@ -19,7 +19,7 @@ namespace Kirkit.Score.Data
 
         Task<IList<T>> GetAll();
 
-        Task<T> Save(T entitity);
+        Task<T> Save(object entitity);
 
         Task<IList<T>> SaveAll(IList<T> entities);
 
