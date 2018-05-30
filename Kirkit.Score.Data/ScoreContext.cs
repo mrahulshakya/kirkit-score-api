@@ -1,5 +1,4 @@
-﻿using Kirkit.Score.Common.Data;
-using Kirkit.Score.Model.Entity;
+﻿using Kirkit.Score.Model.Entity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Kirkit.Score.Data
@@ -35,26 +34,7 @@ namespace Kirkit.Score.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            var composite = new CompositeModelBuilder();
-            composite.AddModel(new BallType())
-                     .AddModel(new BattingScore())
-                     .AddModel(new BowlingScore())
-                     .AddModel(new Match())
-                     .AddModel(new Innings())
-                     .AddModel(new MatchRule())
-                     .AddModel(new MaxOverRule())
-                     .AddModel(new Player())
-                     .AddModel(new PlayerTeam())
-                     .AddModel(new Powerplayrule())
-                     .AddModel(new Powerplayslot())
-                     .AddModel(new Rule())
-                     .AddModel(new RunType())
-                     .AddModel(new Team())
-                     .AddModel(new Tournament())
-                     .AddModel(new TournamentMatch())
-                     .AddModel(new TournamentRule())
-                     .AddModel(new WicketType())
-                     .AddModel(new Innings());
+            var composite = RepositoryFactory.GetModels();
 
             composite.Build(modelBuilder);
             base.OnModelCreating(modelBuilder);

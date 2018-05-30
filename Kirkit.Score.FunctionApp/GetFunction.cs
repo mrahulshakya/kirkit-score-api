@@ -1,6 +1,5 @@
 using Kirkit.Score.Api.DI;
 using Kirkit.Score.Data;
-using Kirkit.Score.Model.Entity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -13,28 +12,30 @@ using System.Threading.Tasks;
 
 namespace Kirkit.Score.Api
 {
-    public static class SampleGet
+    public static class GetFunction
     {
-
-        [FunctionName("GetBallTypes")]
-        public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = "references/BallType")]HttpRequest req,
-            TraceWriter log, [Inject]IScoreRepository repository)
+        [FunctionName("Get")]
+        public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = "references/{resource}")]HttpRequest req,
+            string resource,
+            TraceWriter log, [Inject]IRepositoryFactory factory)
         {
             try
             {
                 log.Info($"C# HTTP trigger function processed a request.");
 
-                IList<BallType> customers = null;
 
-                customers = await repository.GetAllBallTypes()
-                              .ConfigureAwait(false);
+                var repo = factory.GetRepository(resource);
 
-                if (!customers.Any())
+                var result = Enumerable.ToList<object>(await repo.GetAll()
+                              .ConfigureAwait(false));
+
+                var listResult = (List<object>)result;
+                if (!listResult?.Any() ?? false)
                 {
                     return (ActionResult)new NotFoundObjectResult(new { ErrorMessage = "CustomerNotFound" });
                 }
 
-                return (ActionResult)new OkObjectResult(new { BallTypes = customers });
+                return (ActionResult)new OkObjectResult(new { Response = listResult });
 
             }
             catch (Exception ex)
@@ -42,8 +43,6 @@ namespace Kirkit.Score.Api
                 log.Error(ex.Message, ex);
                 throw;
             }
-
-
         }
     }
 }

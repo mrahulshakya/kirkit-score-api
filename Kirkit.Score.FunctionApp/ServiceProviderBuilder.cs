@@ -32,10 +32,11 @@ namespace Kirkit.Score.Api
             });
 
             services.AddSingleton(new MapperInitialize().Mapper);
-
             services.AddSingleton<IConfiguration>(configuration);
-            services.AddScoped<IScoreRepository, ScoreRepository>();
+            services.AddScoped<IRepositoryFactory, RepositoryFactory>();
 
+            services.AddScoped<IScoreRepository, ScoreRepository>();
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             // services.AddTransient<IGreeter, Lib.Greeter>();
 
             return services.BuildServiceProvider(true);

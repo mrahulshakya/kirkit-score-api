@@ -25,5 +25,7 @@ namespace Kirkit.Score.Common.Data
         {
             models.AddRange(newModels);
         }
+
+        public List<IEntityModel> Models => models;
     }
 }
