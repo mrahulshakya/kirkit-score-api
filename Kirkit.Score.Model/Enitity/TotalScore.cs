@@ -28,7 +28,7 @@ namespace Kirkit.Score.Model.Entity
         {
             modelBuilder.Entity<TotalScore>(entity =>
             {
-                entity.Property(e => e.TotalScoreId).ValueGeneratedNever();
+                entity.HasKey(x => x.TotalScoreId);
 
                 entity.Property(e => e.DtCreated).HasColumnType("datetime");
 

@@ -55,7 +55,7 @@ namespace Kirkit.Score.Data
         /// </summary>
         /// <param name="resource"></param>
         /// <returns></returns>
-        public Type  GetModelType(string resource)
+        public Type GetModelType(string resource)
         {
             if (lazyMap.Value.ContainsKey(resource.ToLower()))
             {
@@ -92,7 +92,7 @@ namespace Kirkit.Score.Data
                          .AddModel(new TournamentRule())
                          .AddModel(new WicketType())
                          .AddModel(new WicketDetail())
-                         .AddModel(new Innings());
+                         .AddModel(new TotalScore());
             return model;
         }
 

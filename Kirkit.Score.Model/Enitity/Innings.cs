@@ -41,7 +41,7 @@ namespace Kirkit.Score.Model.Entity
         {
             modelBuilder.Entity<Innings>(entity =>
             {
-                entity.Property(e => e.InningsId).ValueGeneratedNever();
+                entity.HasKey(e => e.InningsId);
 
                 entity.Property(e => e.DtCreated).HasColumnType("datetime");
 

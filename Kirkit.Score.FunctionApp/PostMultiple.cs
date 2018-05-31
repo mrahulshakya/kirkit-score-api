@@ -7,14 +7,15 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
 using Newtonsoft.Json;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Kirkit.Score.Api
 {
-    public static class PostFunction
+    public static class PostMultipleFunction
     {
-        [FunctionName("Post")]
-        public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "post", Route = "{resource}")]HttpRequest req,
+        [FunctionName("PostMultiple")]
+        public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "post", Route = "collection/{resource}")]HttpRequest req,
             string resource,
             TraceWriter log, [Inject]IRepositoryFactory factory)
         {
@@ -35,10 +36,10 @@ namespace Kirkit.Score.Api
                     return (ActionResult)new BadRequestResult();
                 }
 
-                var obj = JsonConvert.DeserializeObject(json, resourceType);
+                var objects = JsonConvert.DeserializeObject(json, typeof(List<>).MakeGenericType(resourceType));
 
                 var repo = factory.GetRepository(resource);
-                repo.Add(obj);
+                repo.AddRange(objects);
 
                 var result = await repo.Save()
                               .ConfigureAwait(false);
@@ -48,7 +49,7 @@ namespace Kirkit.Score.Api
                     return (ActionResult)new NotFoundObjectResult(new { ErrorMessage = "CustomerNotFound" });
                 }
 
-                return (ActionResult)new CreatedResult(resource, new { Response = obj });
+                return (ActionResult)new CreatedResult(resource, new { Response = objects });
             }
             catch (Exception ex)
             {

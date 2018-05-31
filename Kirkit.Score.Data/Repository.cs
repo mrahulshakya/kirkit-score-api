@@ -49,31 +49,29 @@ namespace Kirkit.Score.Data
                         .ConfigureAwait(false);
         }
 
-        public async Task<T> Save(object entity)
+        public async Task<bool> Save()
         {
-            var dbSet = Context.Set<T>();
-            dbSet.Add(entity as T);
             var changed = await Context.SaveChangesAsync();
 
-            return changed > 0 ? entity as T : null;
+            return changed > 0;
         }
 
-        public async Task<IList<T>> SaveAll(IList<T> entities)
+        public void Update(object entity)
         {
             var dbSet = Context.Set<T>();
-            dbSet.AddRange(entities);
-            var changed = await Context.SaveChangesAsync();
-
-            return changed == entities.Count ? entities : null;
+            dbSet.Update(entity as T);
         }
 
-        public async Task<T> Update(T entity)
+        public void Add(object entitty)
         {
             var dbSet = Context.Set<T>();
-            dbSet.Update(entity);
-            var changed = await Context.SaveChangesAsync();
+            dbSet.Add(entitty as T);
+        }
 
-            return changed > 0 ? entity : null;
+        public void AddRange(object objects)
+        {
+            var dbSet = Context.Set<T>();
+            dbSet.AddRange(objects as List<T>);
         }
     }
 }

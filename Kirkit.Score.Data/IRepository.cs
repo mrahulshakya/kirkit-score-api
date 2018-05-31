@@ -19,10 +19,12 @@ namespace Kirkit.Score.Data
 
         Task<IList<T>> GetAll();
 
-        Task<T> Save(object entitity);
+        void Add(object entitty);
 
-        Task<IList<T>> SaveAll(IList<T> entities);
+        Task<bool> Save();
 
-        Task<T> Update(T entity);
+        void Update(object entity);
+
+        void AddRange(object entitty);
     }
 }
