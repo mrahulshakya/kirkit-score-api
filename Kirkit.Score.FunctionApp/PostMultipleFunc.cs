@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Kirkit.Score.Api
 {
-    public static class PostMultipleFunction
+    public static class PostMultipleFunc
     {
         [FunctionName("PostMultiple")]
         public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "post", Route = "collection/{resource}")]HttpRequest req,

@@ -15,7 +15,7 @@ namespace Kirkit.Score.Data
 
         Task<T> GetFirst(Expression<Func<T, bool>> predicate);
 
-        Task<IList<T>> GetAll(Expression<Func<T, bool>> predicate);
+        Task<IList<T>> Get(Expression<Func<T, bool>> predicate);
 
         Task<IList<T>> GetAll();
 

@@ -1,5 +1,6 @@
 using Kirkit.Score.Api.DI;
 using Kirkit.Score.Data;
+using Kirkit.Score.Model.Payload;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
@@ -12,10 +13,10 @@ using System.Threading.Tasks;
 
 namespace Kirkit.Score.Api
 {
-    public static class GetFunction
+    public static class GetAllFunc
     {
-        [FunctionName("Get")]
-        public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = "references/{resource}")]HttpRequest req,
+        [FunctionName("GetAll")]
+        public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = "collection/{resource}")]HttpRequest req,
             string resource,
             TraceWriter log, [Inject]IRepositoryFactory factory)
         {
@@ -23,12 +24,12 @@ namespace Kirkit.Score.Api
             {
                 log.Info($"C# HTTP trigger function processed a request.");
 
-
+                var result = new List<object>();
                 var repo = factory.GetRepository(resource);
 
-                var result = Enumerable.ToList<object>(await repo.GetAll()
-                              .ConfigureAwait(false));
-
+                result = Enumerable.ToList<object>(await repo.GetAll()
+                                  .ConfigureAwait(false));
+           
                 var listResult = (List<object>)result;
                 if (!listResult?.Any() ?? false)
                 {
@@ -37,6 +38,11 @@ namespace Kirkit.Score.Api
 
                 return (ActionResult)new OkObjectResult(new { Response = listResult });
 
+            }
+            catch(ScoreException ex)
+            {
+                log.Error(ex.Message, ex);
+                return (ActionResult)new NotFoundObjectResult(new { Response = ex.Message });
             }
             catch (Exception ex)
             {

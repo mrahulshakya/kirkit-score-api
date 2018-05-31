@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Kirkit.Score.Common.Data;
+using System;
 
 namespace Kirkit.Score.Data
 {
@@ -7,5 +8,7 @@ namespace Kirkit.Score.Data
         dynamic GetRepository(string resource);
 
         Type GetModelType(string resource);
+
+        dynamic GetCustomQuery(string resource);
     }
 }

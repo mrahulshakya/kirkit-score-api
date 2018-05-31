@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Enitity\CustomQuery\InningsCustomQuery.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="Logic\ve-F80D.tmp" />
   </ItemGroup>
 
@@ -18,6 +22,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Kirkit.Score.Common\Kirkit.Score.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Enitity\CustomQuery\" />
   </ItemGroup>
 
 </Project>

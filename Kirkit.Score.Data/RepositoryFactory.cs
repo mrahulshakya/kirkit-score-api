@@ -49,7 +49,7 @@ namespace Kirkit.Score.Data
 
             //    return new Repository<BallType>(con)
         }
-
+     
         /// <summary>
         /// 
         /// </summary>

@@ -32,7 +32,7 @@ namespace Kirkit.Score.Data
                         .ConfigureAwait(false);
         }
 
-        public async Task<IList<T>> GetAll(Expression<Func<T, bool>> predicate)
+        public async Task<IList<T>> Get(Expression<Func<T, bool>> predicate)
         {
             var dbSet = Context.Set<T>();
             return await dbSet.AsNoTracking().Where(predicate)
