@@ -1,5 +1,6 @@
 ﻿using Kirkit.Score.Common.Data;
 using System;
+using System.Linq;
 using System.Linq.Expressions;
 
 namespace Kirkit.Score.Data
@@ -17,7 +18,9 @@ namespace Kirkit.Score.Data
         {
             var funcType = typeof(Func<,>).MakeGenericType(resourceType, typeof(bool));
             var param = Expression.Parameter(resourceType, "inning");
-            var prop = Expression.Property(param, key);
+            var property = resourceType.GetProperties().FirstOrDefault(x => string.Equals(x.Name, key, StringComparison.OrdinalIgnoreCase));
+            
+            var prop = Expression.Property(param, property.Name);
             var parmaR = Expression.Constant(ID);
             var exp = Expression.Lambda(funcType, Expression.Equal(prop, parmaR), param);
 

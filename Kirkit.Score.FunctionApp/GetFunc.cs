@@ -15,7 +15,7 @@ namespace Kirkit.Score.Api
     public static class GetFunc
     {
         [FunctionName("Get")]
-        public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = "{resource}/{id}")]HttpRequest req,
+        public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = "{resource}/{id:int}")]HttpRequest req,
             string resource, int id,
             TraceWriter log, [Inject]IRepositoryFactory factory)
         {
