@@ -2,7 +2,6 @@
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq.Expressions;
 
 namespace Kirkit.Score.Model.Entity
 {
@@ -90,7 +89,5 @@ namespace Kirkit.Score.Model.Entity
                     .HasConstraintName("FK__Innings__TotalSc__797309D9");
             });
         }
-
-        private Dictionary<string, Expression<Func<Innings,bool>> CustomQueries = new Dictionary<>
     }
 }

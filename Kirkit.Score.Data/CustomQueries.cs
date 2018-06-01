@@ -1,29 +1,27 @@
 ﻿using Kirkit.Score.Common.Data;
-using Kirkit.Score.Model.Entity;
-using Kirkit.Score.Model.Payload;
 using System;
-using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace Kirkit.Score.Data
 {
     public class CustomQuery
     {
-        public CustomQuery(object val)
+        public CustomQuery(int val)
         {
             ID = val;
         }
 
-        public  static object ID { get; private set; }
+        public static int ID { get; private set; }
 
-        public static Expression<Func<Innings, bool>>  GetQuery(string key)
+        public static Expression GetQuery(Type resourceType, string key)
         {
-            if(string.Equals(key, nameof(Innings.MatchId), StringComparison.OrdinalIgnoreCase))
-            {
-                return x => x.MatchId ==  (int)ID;
-            }
+            var funcType = typeof(Func<,>).MakeGenericType(resourceType, typeof(bool));
+            var param = Expression.Parameter(resourceType, "inning");
+            var prop = Expression.Property(param, key);
+            var parmaR = Expression.Variable(typeof(int), "ID");
+            var exp = Expression.Lambda(funcType, Expression.Equal(prop, parmaR));
 
-            throw new ScoreException(System.Net.HttpStatusCode.BadRequest , "Invalid key passed in request");
+            return exp;
         }
     }
 

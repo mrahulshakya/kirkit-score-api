@@ -1,5 +1,4 @@
 using Kirkit.Score.Api.DI;
-using Kirkit.Score.Common.Data;
 using Kirkit.Score.Data;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +16,7 @@ namespace Kirkit.Score.Api
     {
         [FunctionName("Get")]
         public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "get", Route = "{resource}/{id}")]HttpRequest req,
-            string resource,int id,
+            string resource, int id,
             TraceWriter log, [Inject]IRepositoryFactory factory)
         {
             try
@@ -26,12 +25,12 @@ namespace Kirkit.Score.Api
                 var querystring = req.GetQueryParameterDictionary();
                 var repo = factory.GetRepository(resource);
                 var results = new List<object>();
-
+                var resorceType = factory.GetModelType(resource);
                 if (querystring.ContainsKey("key"))
                 {
                     var key = querystring["key"];
                     var query = new CustomQuery(id);
-                    results = Enumerable.ToList<object>(await repo.Get(query.GetQuery(key)).ConfigureAwait(false));
+                    results = Enumerable.ToList<object>(await repo.Get(CustomQuery.GetQuery(resorceType, key)).ConfigureAwait(false));
                     if (results == null)
                     {
                         return (ActionResult)new NotFoundObjectResult(new { ErrorMessage = "CustomerNotFound" });
