@@ -18,8 +18,8 @@ namespace Kirkit.Score.Data
             var funcType = typeof(Func<,>).MakeGenericType(resourceType, typeof(bool));
             var param = Expression.Parameter(resourceType, "inning");
             var prop = Expression.Property(param, key);
-            var parmaR = Expression.Variable(typeof(int), "ID");
-            var exp = Expression.Lambda(funcType, Expression.Equal(prop, parmaR));
+            var parmaR = Expression.Constant(ID);
+            var exp = Expression.Lambda(funcType, Expression.Equal(prop, parmaR), param);
 
             return exp;
         }
