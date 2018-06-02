@@ -1,5 +1,9 @@
 ﻿using Kirkit.Score.Model.Entity;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Kirkit.Score.Data
 {
@@ -44,5 +48,32 @@ namespace Kirkit.Score.Data
         {
             base.Dispose();
         }
-    }
+
+        public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default(CancellationToken))
+        {
+            var entities = ChangeTracker.Entries().Where(x => x.Entity is BaseEntity)
+                               .Where(x => x.State == EntityState.Added || x.State == EntityState.Modified || x.State == EntityState.Deleted);
+            foreach (var entity in entities)
+            {
+                if (entity.State == EntityState.Added)
+                {
+                    ((BaseEntity)entity.Entity).DtCreated = DateTime.Now;
+                    ((BaseEntity)entity.Entity).DtUpdated = DateTime.Now;
+                    ((BaseEntity)entity.Entity).IsActive = true;
+                }
+                if (entity.State == EntityState.Modified)
+                {
+                    ((BaseEntity)entity.Entity).DtUpdated = DateTime.Now;
+                }
+                if (entity.State == EntityState.Deleted)
+                {
+                    ((BaseEntity)entity.Entity).DtUpdated = DateTime.Now;
+                    ((BaseEntity)entity.Entity).IsActive = false;
+                    entity.State = EntityState.Modified;
+                }
+            };
+
+            return base.SaveChangesAsync(cancellationToken);
+        }
+      }
 }
