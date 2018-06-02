@@ -46,7 +46,7 @@ namespace Kirkit.Score.Data.Validation
             foreach (var propertyName in PropertiesToValidate.Value)
             {
                 var query = CustomQuery.FilterByProperty(entity, propertyName);
-                var result = await dbset.CountAsync(query as Expression<Func<T, bool>>);
+                var result = await dbset.CountAsync(query as Expression<Func<T, bool>>).ConfigureAwait(false);
                 var errorMessages = new List<string>();
 
                 if (result == 1)
@@ -62,13 +62,10 @@ namespace Kirkit.Score.Data.Validation
                 if (errorMessages.Any())
                 {
                     errors.Add(propertyName, errorMessages);
-                    return errors;
                 }
-
-                return null;
             }
 
-            return errors;
+            return errors.Any() ? errors : null;
         }
     }
 }

@@ -77,9 +77,9 @@ namespace Kirkit.Score.Logic
         private async Task ValidateDb(string resource, object obj)
         {
             var validationRepo = ValidationRepository(resource);
-            List<object> errors = Enumerable.ToList(await validationRepo.Validate(obj).ConfigureAwait(false));
+            dynamic errors = await validationRepo.Validate(obj).ConfigureAwait(false);
 
-            if (errors?.Any() ?? false)
+            if (errors != null && ((Dictionary<string, IList<string>>)errors).Count > 0)
             {
                 throw new ScoreException(HttpStatusCode.BadRequest, new { Resonse = errors });
             }
