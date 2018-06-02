@@ -1,10 +1,12 @@
 using Kirkit.Score.Api.DI;
-using Kirkit.Score.Data;
+using Kirkit.Score.Common.Exception;
+using Kirkit.Score.Logic;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -18,44 +20,36 @@ namespace Kirkit.Score.Api
         [FunctionName("Post")]
         public static async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Function, "post", Route = "{resource}")]HttpRequest req,
             string resource,
-            TraceWriter log, [Inject]IRepositoryFactory factory)
+            ILogger log, [Inject]ILogicFactory factory)
         {
+            ObjectResult returnResult = new ObjectResult(null);
+
             try
             {
-                log.Info($"C# HTTP trigger function processed a request.");
+                log.LogInformation($"C# HTTP trigger function processed a request.");
 
                 var json = await req.ReadAsStringAsync();
-                var resourceType = factory.GetModelType(resource);
 
-                if (resourceType == null)
-                {
-                    return (ActionResult)new NotFoundObjectResult(new { ErrorMessage = "Invalid resource key." });
-                }
+                var repo = factory.GetLogic(resource);
 
-                if(json == null)
-                {
-                    return (ActionResult)new BadRequestResult();
-                }
-                
-                var obj = JsonConvert.DeserializeObject(json, resourceType);
-
-                var repo = factory.GetRepository(resource);
-                
-                var result = await repo.Save(Convert.ChangeType(obj, resourceType))
+                var result = await repo.Save(resource, json)
                               .ConfigureAwait(false);
-
-                if (result == null)
-                {
-                    return (ActionResult)new NotFoundObjectResult(new { ErrorMessage = "CustomerNotFound" });
-                }
 
                 return (ActionResult)new CreatedResult(resource, result);
             }
+            catch(ScoreException ex)
+            {
+                var objResult = new ObjectResult(ex.Response);
+                objResult.StatusCode = (int)ex.StatusCode;
+                returnResult = objResult;
+            }
             catch (Exception ex)
             {
-                log.Error(ex.Message, ex);
+                log.LogCritical(ex.Message, ex);
                 throw;
             }
+
+            return returnResult;
         }
     }
 }

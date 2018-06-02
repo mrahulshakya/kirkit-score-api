@@ -26,10 +26,18 @@ namespace Kirkit.Score.Data
 
             return exp;
         }
-    }
 
-    public interface ICustomQuery<T> where T : class, IEntityModel
-    {
-        Expression<Func<T, bool>> GetQuery(string key);
+        public static Expression FilterByProperty<T>(T obj, string key)
+        {
+            var entityType = typeof(T);
+            var funcType = typeof(Func<,>).MakeGenericType(entityType, typeof(bool));
+            var param = Expression.Parameter(entityType, "x");
+            var property = Expression.Property(param, key);
+            var paramR = Expression.Constant(entityType.GetProperty(key).GetValue(obj, null));
+
+            var exp = Expression.Lambda(funcType, Expression.Equal(property, paramR), param);
+
+            return exp;
+        }
     }
 }

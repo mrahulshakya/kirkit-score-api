@@ -16,8 +16,7 @@ namespace Kirkit.Score.Model.Mapper
         {
             var config = new MapperConfiguration(cfg =>
             {
-                //cfg.AddProfile(new SearchDtoDomainMapper());
-                //cfg.AddProfile(new SearchEntityDomainMapper());
+                cfg.AddProfile(new ScoreProfile());
             });
 
 

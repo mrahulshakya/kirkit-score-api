@@ -23,7 +23,7 @@ namespace Kirkit.Score.Data
         public virtual DbSet<Tournament> Tournament { get; set; }
         public virtual DbSet<TournamentMatch> TournamentMatch { get; set; }
         public virtual DbSet<TournamentRule> TournamentRule { get; set; }
-        public virtual DbSet<UpdatePerBall> UpdatePerBall { get; set; }
+        public virtual DbSet<PerBallUpdate> PerBallUpdate { get; set; }
         public virtual DbSet<WicketDetail> WicketDetail { get; set; }
         public virtual DbSet<WicketType> WicketType { get; set; }
 

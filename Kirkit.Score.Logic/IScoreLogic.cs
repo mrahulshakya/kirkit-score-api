@@ -3,16 +3,16 @@ using System.Threading.Tasks;
 
 namespace Kirkit.Score.Logic
 {
-    public interface IScoreLogic
+    public interface IScoreLogic<T>
     {
-        Task<object> Save(string resource, string json);
+        Task<T> Save(string resource, string json);
 
-        Task<IList<object>> Get(string resource,int id);
+        Task<IList<T>> Get(string resource,int id);
 
-        Task<IList<object>> GetAll(string resource);
+        Task<IList<T>> GetAll(string resource);
 
-        Task<object> Update(string resource, int id, string newJson);
+        Task<T> Update(string resource, int id, string newJson);
 
-        Task Delete(string resorce, int id);
+        Task<T> Delete(string resorce, int id);
     }
 }

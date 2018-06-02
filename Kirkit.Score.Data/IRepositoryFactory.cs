@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using Kirkit.Score.Common.Data;
+using Kirkit.Score.Data.Validation;
 
 namespace Kirkit.Score.Data
 {
@@ -7,5 +10,9 @@ namespace Kirkit.Score.Data
         dynamic GetRepository(string resource);
 
         Type GetModelType(string resource);
+
+        IList<IValidator<T>> GetValidators<T>() where T : class, IEntityModel;
+
+        dynamic GetValidatorRepository(string resources);
     }
 }

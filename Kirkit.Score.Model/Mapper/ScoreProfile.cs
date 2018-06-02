@@ -6,7 +6,8 @@ namespace Kirkit.Score.Model.Mapper
     {
         public ScoreProfile()
         {
-            //CreateMap<>();
+            CreateMap<Logic.Player, Entity.Player>()
+                .ReverseMap();
         }
     }
 }

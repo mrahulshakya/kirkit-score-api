@@ -5,9 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="System.ComponentModel.Annotations">
-      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\system.componentmodel.annotations\4.4.0\ref\netstandard2.0\System.ComponentModel.Annotations.dll</HintPath>
-    </Reference>
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Kirkit.Score.Common\Kirkit.Score.Common.csproj" />
+    <ProjectReference Include="..\Kirkit.Score.Data\Kirkit.Score.Data.csproj" />
+    <ProjectReference Include="..\Kirkit.Score.Model\Kirkit.Score.Model.csproj" />
   </ItemGroup>
 
 </Project>

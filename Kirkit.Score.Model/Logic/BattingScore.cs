@@ -2,7 +2,7 @@
 
 namespace Kirkit.Score.Model.Logic
 {
-    public class BattingScore
+    public class BattingScore : LogicBase
     {
         public int BattingScoreId { get; set; }
         public int InningsId { get; set; }
@@ -14,8 +14,5 @@ namespace Kirkit.Score.Model.Logic
         public int Dots { get; set; }
         public double StrikeRate { get; set; }
         public bool NotOut { get; set; }
-        public DateTime DtCreated { get; set; }
-        public DateTime DtUpdated { get; set; }
-        public bool IsActive { get; set; }
     }
 }

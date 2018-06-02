@@ -1,4 +1,5 @@
 using Kirkit.Score.Api.DI;
+using Kirkit.Score.Common.Exception;
 using Kirkit.Score.Data;
 using Kirkit.Score.Model.Payload;
 using Microsoft.AspNetCore.Http;

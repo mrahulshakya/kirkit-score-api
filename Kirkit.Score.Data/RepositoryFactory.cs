@@ -1,4 +1,5 @@
 ﻿using Kirkit.Score.Common.Data;
+using Kirkit.Score.Data.Validation;
 using Kirkit.Score.Model.Entity;
 using System;
 using System.Collections.Generic;
@@ -7,20 +8,23 @@ namespace Kirkit.Score.Data
 {
     public class RepositoryFactory : IRepositoryFactory
     {
-        private Lazy<Dictionary<string, Type>> lazyMap =
+        private Lazy<Dictionary<string, Type>> repositoryMap =
            new Lazy<Dictionary<string, Type>>(
-               () => Mapping);
+               () => Mapping(typeof(IRepository<>)));
+
+        private Lazy<Dictionary<string, Type>> validatorMap =
+         new Lazy<Dictionary<string, Type>>(
+             () => Mapping(typeof(IValidationRespository<>)));
+
 
         private readonly IServiceProvider _provider;
 
-        private static Dictionary<string, Type> Mapping
+        private static Dictionary<string, Type> Mapping(Type genericType)
         {
-            get
-            {
                 var dic = new Dictionary<string, Type>();
                 foreach (var model in GetModels().Models)
                 {
-                    var instanceType = typeof(IRepository<>).MakeGenericType(model.GetType());
+                    var instanceType = genericType.MakeGenericType(model.GetType());
                     var key = model.GetType().Name.ToLower();
                     if (!dic.ContainsKey(key))
                     {
@@ -30,7 +34,6 @@ namespace Kirkit.Score.Data
                 }
 
                 return dic;
-            }
         }
 
         public RepositoryFactory(IServiceProvider provider)
@@ -45,7 +48,7 @@ namespace Kirkit.Score.Data
         /// <returns></returns>
         public dynamic GetRepository(string resource)
         {
-            return _provider.GetService(lazyMap.Value[resource.ToLower()]);
+            return _provider.GetService(repositoryMap.Value[resource.ToLower()]);
 
             //    return new Repository<BallType>(con)
         }
@@ -57,9 +60,9 @@ namespace Kirkit.Score.Data
         /// <returns></returns>
         public Type GetModelType(string resource)
         {
-            if (lazyMap.Value.ContainsKey(resource.ToLower()))
+            if (repositoryMap.Value.ContainsKey(resource.ToLower()))
             {
-                var type = lazyMap.Value[resource.ToLower()].GetGenericArguments()[0];
+                var type = repositoryMap.Value[resource.ToLower()].GetGenericArguments()[0];
                 return type;
             }
 
@@ -92,9 +95,21 @@ namespace Kirkit.Score.Data
                          .AddModel(new TournamentRule())
                          .AddModel(new WicketType())
                          .AddModel(new WicketDetail())
-                         .AddModel(new TotalScore());
+                         .AddModel(new TotalScore())
+                         .AddModel(new PerBallUpdate());
             return model;
         }
 
+        IList<IValidator<T>> IRepositoryFactory.GetValidators<T>()
+        {
+            var result = new List<IValidator<T>>();
+            result.Add(_provider.GetService(typeof(IValidator<T>)) as IValidator<T>);
+            return result;
+        }
+
+        public dynamic GetValidatorRepository(string resource)
+        {
+            return _provider.GetService(validatorMap.Value[resource.ToLower()]);
+        }
     }
 }

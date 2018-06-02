@@ -1,18 +1,23 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Kirkit.Score.Model.Logic
 {
-    public class Player
+    public class Player : LogicBase
     {
         public int PlayerId { get; set; }
         public string LastName { get; set; }
         public string FirstName { get; set; }
         public string CoolName { get; set; }
+
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
+
+        [Required]
         public decimal PhoneNumber { get; set; }
+
+        [Range(1, 100)]
         public int Age { get; set; }
-        public DateTime? DtCreated { get; set; }
-        public DateTime? DtUpdated { get; set; }
-        public bool IsActive { get; set; }
     }
 }
