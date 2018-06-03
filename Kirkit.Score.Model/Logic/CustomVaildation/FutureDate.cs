@@ -19,7 +19,7 @@ namespace Kirkit.Score.Model.Logic.CustomVaildation
         {
             var date = (DateTime)value;
 
-            if(date < DateTime.Now && date > DateTime.Now.AddMonths(maxmonthsInFuture))
+            if(date > DateTime.Now && date < DateTime.Now.AddMonths(maxmonthsInFuture))
             {
                 return false;
             }

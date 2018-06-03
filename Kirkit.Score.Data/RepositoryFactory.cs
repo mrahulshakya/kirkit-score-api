@@ -1,6 +1,7 @@
 ﻿using Kirkit.Score.Common.Data;
 using Kirkit.Score.Data.Validation;
 using Kirkit.Score.Model.Entity;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 
@@ -103,7 +104,9 @@ namespace Kirkit.Score.Data
         IList<IValidator<T>> IRepositoryFactory.GetValidators<T>()
         {
             var result = new List<IValidator<T>>();
-            result.Add(_provider.GetService(typeof(IValidator<T>)) as IValidator<T>);
+
+            var services = _provider.GetServices(typeof(IValidator<T>)) as IEnumerable<IValidator<T>>;
+            result.AddRange(services);
             return result;
         }
 

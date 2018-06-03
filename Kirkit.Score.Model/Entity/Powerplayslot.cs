@@ -16,6 +16,7 @@ namespace Kirkit.Score.Model.Entity
         {
             modelBuilder.Entity<Powerplayslot>(entity =>
             {
+                entity.HasQueryFilter(x => x.IsActive);
                 entity.ToTable("POWERPLAYSLOT");
 
                 entity.Property(e => e.DtCreated).HasColumnType("datetime");

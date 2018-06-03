@@ -12,6 +12,8 @@ namespace Kirkit.Score.Model.Entity
         {
             modelBuilder.Entity<WicketType>(entity =>
             {
+                entity.HasQueryFilter(x => x.IsActive);
+
                 entity.Property(e => e.WicketTypeId).ValueGeneratedNever();
 
                 entity.Property(e => e.Detail)

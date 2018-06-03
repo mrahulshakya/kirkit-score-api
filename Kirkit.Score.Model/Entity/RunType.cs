@@ -13,6 +13,8 @@ namespace Kirkit.Score.Model.Entity
         {
             modelBuilder.Entity<RunType>(entity =>
             {
+                entity.HasQueryFilter(x => x.IsActive);
+
                 entity.Property(e => e.RunTypeId).ValueGeneratedNever();
 
                 entity.Property(e => e.Detail)

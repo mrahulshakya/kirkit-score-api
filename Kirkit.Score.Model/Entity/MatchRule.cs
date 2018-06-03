@@ -17,6 +17,8 @@ namespace Kirkit.Score.Model.Entity
         {
             modelBuilder.Entity<MatchRule>(entity =>
             {
+                entity.HasQueryFilter(x => x.IsActive);
+
                 entity.HasKey(e => e.MacthRuleId);
 
                 entity.Property(e => e.DtCreated).HasColumnType("datetime");

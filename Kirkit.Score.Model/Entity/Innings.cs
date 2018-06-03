@@ -1,4 +1,5 @@
-﻿using Kirkit.Score.Common.Data;
+﻿using Kirkit.Score.Common.Attribute;
+using Kirkit.Score.Common.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -12,32 +13,41 @@ namespace Kirkit.Score.Model.Entity
             BattingScore = new HashSet<BattingScore>();
             BowlingScore = new HashSet<BowlingScore>();
             PerBallUpdate = new HashSet<PerBallUpdate>();
+            TotalScore = new HashSet<TotalScore>();
         }
 
         public int InningsId { get; set; }
         public string Name { get; set; }
+
+        [AllowedCount(2)]
         public int MatchId { get; set; }
+
         public int BattingTeamId { get; set; }
         public int BowlingTeamId { get; set; }
+
         public int PlayeOnStrikeId { get; set; }
+
         public int PlayerOnNonStrikeId { get; set; }
+
         public int BallerId { get; set; }
-        public int TotalScoreId { get; set; }
-       
         public Player Baller { get; set; }
         public Team BattingTeam { get; set; }
         public Team BowlingTeam { get; set; }
+
         public Player PlayeOnStrike { get; set; }
+
         public Player PlayerOnNonStrike { get; set; }
-        public TotalScore TotalScore { get; set; }
         public ICollection<BattingScore> BattingScore { get; set; }
         public ICollection<BowlingScore> BowlingScore { get; set; }
         public ICollection<PerBallUpdate> PerBallUpdate { get; set; }
+        public ICollection<TotalScore> TotalScore { get; set; }
 
         public void BuildModel(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Innings>(entity =>
             {
+                entity.HasQueryFilter(x => x.IsActive);
+
                 entity.HasKey(e => e.InningsId);
 
                 entity.Property(e => e.DtCreated).HasColumnType("datetime");
@@ -78,12 +88,6 @@ namespace Kirkit.Score.Model.Entity
                     .HasForeignKey(d => d.PlayerOnNonStrikeId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__Innings__PlayerO__778AC167");
-
-                entity.HasOne(d => d.TotalScore)
-                    .WithMany(p => p.Innings)
-                    .HasForeignKey(d => d.TotalScoreId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Innings__TotalSc__797309D9");
             });
         }
     }

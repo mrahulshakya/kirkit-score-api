@@ -23,6 +23,8 @@ namespace Kirkit.Score.Model.Entity
         {
             modelBuilder.Entity<BattingScore>(entity =>
             {
+                entity.HasQueryFilter(x => x.IsActive);
+
                 entity.Property(e => e.DtCreated).HasColumnType("datetime");
 
                 entity.Property(e => e.DtUpdated).HasColumnType("datetime");

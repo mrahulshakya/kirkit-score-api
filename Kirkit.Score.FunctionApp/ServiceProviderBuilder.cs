@@ -42,7 +42,10 @@ namespace Kirkit.Score.Api
             services.AddScoped<IScoreRepository, ScoreRepository>();
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped(typeof(IValidationRespository<>), typeof(ValidationRepository<>));
-            services.AddScoped(typeof(IValidator<>), typeof(UniqueValidator<>));
+            services.AddScoped(typeof(IValidator<>), typeof(AllowedCountValidator<>));
+            services.AddScoped<IValidator<Model.Entity.Innings>, InningsValidator>();
+
+            
             return services.BuildServiceProvider(true);
         }
 

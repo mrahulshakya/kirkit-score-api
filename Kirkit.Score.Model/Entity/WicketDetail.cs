@@ -21,6 +21,8 @@ namespace Kirkit.Score.Model.Entity
         {
             modelBuilder.Entity<WicketDetail>(entity =>
             {
+                entity.HasQueryFilter(x => x.IsActive);
+
                 entity.Property(e => e.Details)
                     .HasMaxLength(50)
                     .IsUnicode(false);

@@ -24,6 +24,8 @@ namespace Kirkit.Score.Model.Entity
         {
             modelBuilder.Entity<Powerplayrule>(entity =>
             {
+                entity.HasQueryFilter(x => x.IsActive);
+
                 entity.ToTable("POWERPLAYRULE");
 
                 entity.Property(e => e.DtCreated).HasColumnType("datetime");

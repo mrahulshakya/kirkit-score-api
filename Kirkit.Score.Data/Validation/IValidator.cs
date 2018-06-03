@@ -9,6 +9,4 @@ namespace Kirkit.Score.Data.Validation
     {
         Task<Dictionary<string, IList<string>>> Validate(T entity);
     }
-
-
 }

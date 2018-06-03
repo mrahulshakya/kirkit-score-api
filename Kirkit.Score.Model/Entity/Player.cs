@@ -26,10 +26,10 @@ namespace Kirkit.Score.Model.Entity
         public string FirstName { get; set; }
         public string CoolName { get; set; }
 
-        [CustomDbValidation(DbValidationType.Unique)]
+        [AllowedCount(1)]
         public string Email { get; set; }
 
-        [CustomDbValidation(DbValidationType.Unique)]
+        [AllowedCount(1)]
         public decimal PhoneNumber { get; set; }
 
         public int Age { get; set; }
@@ -47,6 +47,8 @@ namespace Kirkit.Score.Model.Entity
         {
             modelBuilder.Entity<Player>(entity =>
             {
+                entity.HasQueryFilter(x => x.IsActive);
+
                 entity.Property(e => e.PlayerId).HasColumnName("PLayerId");
 
                 entity.Property(e => e.CoolName)

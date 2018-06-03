@@ -23,6 +23,9 @@ namespace Kirkit.Score.Model.Mapper
 
             CreateMap<Logic.PerBallUpdate, Entity.PerBallUpdate>()
                .ReverseMap();
+
+            CreateMap<Logic.TotalScore, Entity.TotalScore>()
+    .ReverseMap();
         }
     }
 }

@@ -9,6 +9,10 @@ namespace Kirkit.Score.Model.Logic
 
         [Required]
         [Range(0, Int32.MaxValue)]
+        public int InningsId { get; set; }
+
+        [Required]
+        [Range(0, Int32.MaxValue)]
         public int TotalRuns { get; set; }
 
         [Required]

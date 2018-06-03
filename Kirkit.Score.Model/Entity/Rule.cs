@@ -30,6 +30,8 @@ namespace Kirkit.Score.Model.Entity
         {
             modelBuilder.Entity<Rule>(entity =>
             {
+                entity.HasQueryFilter(x => x.IsActive);
+
                 entity.ToTable("RULE");
 
                 entity.Property(e => e.DtCreated).HasColumnType("datetime");
