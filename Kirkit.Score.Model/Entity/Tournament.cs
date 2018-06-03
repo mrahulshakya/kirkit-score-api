@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Kirkit.Score.Model.Entity
 {
-    public class Tournament : BaseEntity, IEntityModel
+    public class Tournament : BaseEntity1,IEntityModel
     {
         public Tournament()
         {
@@ -24,10 +24,9 @@ namespace Kirkit.Score.Model.Entity
 
         public void BuildModel(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<Tournament>(entity =>
             {
-                entity.HasQueryFilter(x => x.IsActive);
-
                 entity.Property(e => e.DtCreated).HasColumnType("datetime");
 
                 entity.Property(e => e.DtEndDate).HasColumnType("datetime");

@@ -1,13 +1,12 @@
 ﻿using Kirkit.Score.Common.Attribute;
 using Kirkit.Score.Common.Data;
-using Kirkit.Score.Common.Enum;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 
 namespace Kirkit.Score.Model.Entity
 {
-    public class Player : BaseEntity, IEntityModel
+    public class Player : BaseEntity1, IEntityModel
     {
         public Player()
         {
@@ -31,9 +30,7 @@ namespace Kirkit.Score.Model.Entity
 
         [AllowedCount(1)]
         public decimal PhoneNumber { get; set; }
-
         public int Age { get; set; }
-        
         public ICollection<BattingScore> BattingScore { get; set; }
         public ICollection<BowlingScore> BowlingScore { get; set; }
         public ICollection<Innings> InningsBaller { get; set; }
@@ -45,10 +42,9 @@ namespace Kirkit.Score.Model.Entity
 
         public void BuildModel(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<Player>(entity =>
             {
-                entity.HasQueryFilter(x => x.IsActive);
-
                 entity.Property(e => e.PlayerId).HasColumnName("PLayerId");
 
                 entity.Property(e => e.CoolName)
@@ -74,6 +70,7 @@ namespace Kirkit.Score.Model.Entity
 
                 entity.Property(e => e.PhoneNumber).HasColumnType("numeric(10, 0)");
             });
+
         }
     }
 }

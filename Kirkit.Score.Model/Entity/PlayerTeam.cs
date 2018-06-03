@@ -1,15 +1,16 @@
 ﻿using Kirkit.Score.Common.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 
 namespace Kirkit.Score.Model.Entity
 {
-    public class PlayerTeam : BaseEntity, IEntityModel
+    public class PlayerTeam : BaseEntity1,IEntityModel
     {
         public int PlayerTeamId { get; set; }
         public int TeamId { get; set; }
         public int PlayerId { get; set; }
-        
+     
         public Player Player { get; set; }
         public Team Team { get; set; }
 
@@ -17,8 +18,6 @@ namespace Kirkit.Score.Model.Entity
         {
             modelBuilder.Entity<PlayerTeam>(entity =>
             {
-                entity.HasQueryFilter(x => x.IsActive);
-
                 entity.Property(e => e.DtCreated).HasColumnType("datetime");
 
                 entity.Property(e => e.DtUpdated).HasColumnType("datetime");
@@ -35,6 +34,7 @@ namespace Kirkit.Score.Model.Entity
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK__PlayerTea__TeamI__4D94879B");
             });
+
         }
     }
 }

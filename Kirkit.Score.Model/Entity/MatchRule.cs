@@ -1,15 +1,15 @@
 ﻿using Kirkit.Score.Common.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 
 namespace Kirkit.Score.Model.Entity
 {
-    public class MatchRule : BaseEntity, IEntityModel
+    public class MatchRule :  BaseEntity1,IEntityModel
     {
         public int MacthRuleId { get; set; }
         public int MatchId { get; set; }
         public int RuleId { get; set; }
-        
         public Match Match { get; set; }
         public Rule Rule { get; set; }
 
@@ -17,8 +17,6 @@ namespace Kirkit.Score.Model.Entity
         {
             modelBuilder.Entity<MatchRule>(entity =>
             {
-                entity.HasQueryFilter(x => x.IsActive);
-
                 entity.HasKey(e => e.MacthRuleId);
 
                 entity.Property(e => e.DtCreated).HasColumnType("datetime");

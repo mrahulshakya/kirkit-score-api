@@ -1,15 +1,16 @@
 ﻿using Kirkit.Score.Common.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 
 namespace Kirkit.Score.Model.Entity
 {
-    public class TournamentMatch : BaseEntity, IEntityModel
+    public class TournamentMatch : BaseEntity1,IEntityModel
     {
         public int TournamentMatchId { get; set; }
         public int MatchId { get; set; }
         public int TournamentId { get; set; }
-
+     
         public Match Match { get; set; }
         public Tournament Tournament { get; set; }
 
@@ -17,8 +18,6 @@ namespace Kirkit.Score.Model.Entity
         {
             modelBuilder.Entity<TournamentMatch>(entity =>
             {
-                entity.HasQueryFilter(x => x.IsActive);
-
                 entity.Property(e => e.DtCreated).HasColumnType("datetime");
 
                 entity.Property(e => e.DtUpdated).HasColumnType("datetime");

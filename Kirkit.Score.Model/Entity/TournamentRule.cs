@@ -1,15 +1,16 @@
 ﻿using Kirkit.Score.Common.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 
 namespace Kirkit.Score.Model.Entity
 {
-    public class TournamentRule : BaseEntity, IEntityModel
+    public class TournamentRule : BaseEntity1, IEntityModel
     {
         public int TournamentRuleId { get; set; }
         public int? TournamentId { get; set; }
         public int? RuleId { get; set; }
-
+   
         public Rule Rule { get; set; }
         public Tournament Tournament { get; set; }
 
@@ -31,6 +32,7 @@ namespace Kirkit.Score.Model.Entity
                     .HasForeignKey(d => d.TournamentId)
                     .HasConstraintName("FK__Tournamen__Tourn__656C112C");
             });
+
         }
     }
 }

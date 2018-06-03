@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Kirkit.Score.Model.Entity
 {
-    public class MaxOverRule : BaseEntity, IEntityModel
+    public class MaxOverRule : BaseEntity1, IEntityModel
     {
         public MaxOverRule()
         {
@@ -19,15 +19,14 @@ namespace Kirkit.Score.Model.Entity
         public int Bowler3 { get; set; }
         public int Bowler4 { get; set; }
         public int Bowler5 { get; set; }
-        
+   
         public ICollection<Rule> Rule { get; set; }
 
         public void BuildModel(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<MaxOverRule>(entity =>
             {
-                entity.HasQueryFilter(x => x.IsActive);
-
                 entity.Property(e => e.DtCreated).HasColumnType("datetime");
 
                 entity.Property(e => e.DtUpdated).HasColumnType("datetime");

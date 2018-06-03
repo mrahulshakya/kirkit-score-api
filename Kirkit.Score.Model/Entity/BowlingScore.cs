@@ -1,6 +1,7 @@
 ﻿using Kirkit.Score.Common.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 
 namespace Kirkit.Score.Model.Entity
 {
@@ -17,7 +18,7 @@ namespace Kirkit.Score.Model.Entity
         public int Wides { get; set; }
         public int NoBall { get; set; }
         public double StrikeRate { get; set; }
-        
+  
         public Player Baller { get; set; }
         public Innings Innings { get; set; }
 
@@ -25,8 +26,6 @@ namespace Kirkit.Score.Model.Entity
         {
             modelBuilder.Entity<BowlingScore>(entity =>
             {
-                entity.HasQueryFilter(x => x.IsActive);
-
                 entity.Property(e => e.DtCreated).HasColumnType("datetime");
 
                 entity.Property(e => e.DtUpdated).HasColumnType("datetime");
@@ -35,13 +34,13 @@ namespace Kirkit.Score.Model.Entity
                     .WithMany(p => p.BowlingScore)
                     .HasForeignKey(d => d.BallerId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__BowlingSc__Balle__07C12930");
+                    .HasConstraintName("FK__BowlingSc__Balle__0C85DE4D");
 
                 entity.HasOne(d => d.Innings)
                     .WithMany(p => p.BowlingScore)
                     .HasForeignKey(d => d.InningsId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__BowlingSc__Innin__06CD04F7");
+                    .HasConstraintName("FK__BowlingSc__Innin__0B91BA14");
             });
         }
     }

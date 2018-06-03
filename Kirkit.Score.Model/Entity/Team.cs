@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Kirkit.Score.Model.Entity
 {
-    public class Team : BaseEntity, IEntityModel
+    public class Team : BaseEntity1, IEntityModel
     {
         public Team()
         {
@@ -19,7 +19,7 @@ namespace Kirkit.Score.Model.Entity
         public int TeamId { get; set; }
         public string Name { get; set; }
         public string Location { get; set; }
-
+     
         public ICollection<Innings> InningsBattingTeam { get; set; }
         public ICollection<Innings> InningsBowlingTeam { get; set; }
         public ICollection<Match> MatchTeamA { get; set; }
@@ -28,11 +28,8 @@ namespace Kirkit.Score.Model.Entity
 
         public void BuildModel(ModelBuilder modelBuilder)
         {
-
             modelBuilder.Entity<Team>(entity =>
             {
-                entity.HasQueryFilter(x => x.IsActive);
-
                 entity.Property(e => e.DtCreated).HasColumnType("datetime");
 
                 entity.Property(e => e.DtUpdated).HasColumnType("datetime");

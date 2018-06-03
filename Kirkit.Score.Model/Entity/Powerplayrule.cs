@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Kirkit.Score.Model.Entity
 {
-    public class Powerplayrule : BaseEntity, IEntityModel
+    public class Powerplayrule : BaseEntity1, IEntityModel
     {
         public Powerplayrule()
         {
@@ -16,7 +16,7 @@ namespace Kirkit.Score.Model.Entity
         public int PowerPlayRuleId { get; set; }
         public string Name { get; set; }
         public int NoOfSlots { get; set; }
-        
+       
         public ICollection<Powerplayslot> Powerplayslot { get; set; }
         public ICollection<Rule> Rule { get; set; }
 
@@ -24,8 +24,6 @@ namespace Kirkit.Score.Model.Entity
         {
             modelBuilder.Entity<Powerplayrule>(entity =>
             {
-                entity.HasQueryFilter(x => x.IsActive);
-
                 entity.ToTable("POWERPLAYRULE");
 
                 entity.Property(e => e.DtCreated).HasColumnType("datetime");

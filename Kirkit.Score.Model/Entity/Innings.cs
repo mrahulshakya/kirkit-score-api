@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Kirkit.Score.Model.Entity
 {
-    public partial class Innings : BaseEntity, IEntityModel
+    public class Innings : BaseEntity, IEntityModel
     {
         public Innings()
         {
@@ -24,18 +24,14 @@ namespace Kirkit.Score.Model.Entity
 
         public int BattingTeamId { get; set; }
         public int BowlingTeamId { get; set; }
-
         public int PlayeOnStrikeId { get; set; }
-
         public int PlayerOnNonStrikeId { get; set; }
-
         public int BallerId { get; set; }
+       
         public Player Baller { get; set; }
         public Team BattingTeam { get; set; }
         public Team BowlingTeam { get; set; }
-
         public Player PlayeOnStrike { get; set; }
-
         public Player PlayerOnNonStrike { get; set; }
         public ICollection<BattingScore> BattingScore { get; set; }
         public ICollection<BowlingScore> BowlingScore { get; set; }
@@ -46,8 +42,6 @@ namespace Kirkit.Score.Model.Entity
         {
             modelBuilder.Entity<Innings>(entity =>
             {
-                entity.HasQueryFilter(x => x.IsActive);
-
                 entity.HasKey(e => e.InningsId);
 
                 entity.Property(e => e.DtCreated).HasColumnType("datetime");

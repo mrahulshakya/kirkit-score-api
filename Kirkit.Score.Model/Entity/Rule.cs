@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Kirkit.Score.Model.Entity
 {
-    public class Rule : BaseEntity, IEntityModel
+    public class Rule :  BaseEntity, IEntityModel
     {
         public Rule()
         {
@@ -20,7 +20,7 @@ namespace Kirkit.Score.Model.Entity
         public bool SuperOver { get; set; }
         public bool FreeHit { get; set; }
         public int FkPowerPlayRule { get; set; }
-   
+       
         public MaxOverRule FkMaxOverRuleNavigation { get; set; }
         public Powerplayrule FkPowerPlayRuleNavigation { get; set; }
         public ICollection<MatchRule> MatchRule { get; set; }
@@ -28,10 +28,9 @@ namespace Kirkit.Score.Model.Entity
 
         public void BuildModel(ModelBuilder modelBuilder)
         {
+
             modelBuilder.Entity<Rule>(entity =>
             {
-                entity.HasQueryFilter(x => x.IsActive);
-
                 entity.ToTable("RULE");
 
                 entity.Property(e => e.DtCreated).HasColumnType("datetime");

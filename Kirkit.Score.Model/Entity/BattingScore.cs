@@ -1,10 +1,11 @@
 ﻿using Kirkit.Score.Common.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
 
 namespace Kirkit.Score.Model.Entity
 {
-    public class BattingScore : BaseEntity, IEntityModel
+    public class BattingScore :BaseEntity, IEntityModel
     {
         public int BattingScoreId { get; set; }
         public int InningsId { get; set; }
@@ -16,6 +17,7 @@ namespace Kirkit.Score.Model.Entity
         public int Dots { get; set; }
         public double StrikeRate { get; set; }
         public bool NotOut { get; set; }
+        
         public Player Batsmen { get; set; }
         public Innings Innings { get; set; }
 
@@ -23,8 +25,6 @@ namespace Kirkit.Score.Model.Entity
         {
             modelBuilder.Entity<BattingScore>(entity =>
             {
-                entity.HasQueryFilter(x => x.IsActive);
-
                 entity.Property(e => e.DtCreated).HasColumnType("datetime");
 
                 entity.Property(e => e.DtUpdated).HasColumnType("datetime");
@@ -33,15 +33,14 @@ namespace Kirkit.Score.Model.Entity
                     .WithMany(p => p.BattingScore)
                     .HasForeignKey(d => d.BatsmenId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__BattingSc__Batsm__03F0984C");
+                    .HasConstraintName("FK__BattingSc__Batsm__08B54D69");
 
                 entity.HasOne(d => d.Innings)
                     .WithMany(p => p.BattingScore)
                     .HasForeignKey(d => d.InningsId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__BattingSc__Innin__02FC7413");
+                    .HasConstraintName("FK__BattingSc__Innin__07C12930");
             });
-
         }
     }
 }
