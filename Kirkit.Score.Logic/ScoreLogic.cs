@@ -53,7 +53,7 @@ namespace Kirkit.Score.Logic
                     throw new ScoreException(HttpStatusCode.BadRequest, new { Response = "Failed to  create entity" });
                 }
 
-                res = _mapper.Map<T>(obj);
+                res = _mapper.Map<T>(entityObj);
             }
             catch (ScoreDbValidationException ex)
             {
@@ -71,6 +71,51 @@ namespace Kirkit.Score.Logic
                 throw new ScoreException(System.Net.HttpStatusCode.InternalServerError, "Some issue occured.");
             }
          
+            return res;
+        }
+
+        public async Task<T> SaveAll(string resource, string json)
+        {
+            T res = null;
+            try
+            {
+                Type resourceType = GetResourceType(resource);
+                var obj = GetObjectFromJson(json, typeof(IList<T>));
+                ValidateModelState(obj);
+
+                var entityObj = _mapper.Map(obj, typeof(T), resourceType);
+
+                await ValidateDb(resource, entityObj);
+
+                var repo = ScoreRepository(resource);
+
+                repo.Add(entityObj);
+                var isSaved = await repo.Save()
+                              .ConfigureAwait(false);
+
+                if (!isSaved)
+                {
+                    throw new ScoreException(HttpStatusCode.BadRequest, new { Response = "Failed to  create entity" });
+                }
+
+                res = _mapper.Map<T>(entityObj);
+            }
+            catch (ScoreDbValidationException ex)
+            {
+                _logger.LogError("Failed to validate the entity", ex.Errors);
+                throw new ScoreException(HttpStatusCode.BadRequest, new { Errors = ex.Errors });
+            }
+            catch (ScoreException ex)
+            {
+                _logger.LogError(ex.Message);
+                throw;
+            }
+            catch (Exception ex)
+            {
+                _logger.LogCritical(ex, "Unhandled error");
+                throw new ScoreException(System.Net.HttpStatusCode.InternalServerError, "Some issue occured.");
+            }
+
             return res;
         }
 

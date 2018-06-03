@@ -7,6 +7,8 @@ namespace Kirkit.Score.Model.Logic
     {
         public int PlayerId { get; set; }
         public string LastName { get; set; }
+
+        [Required]
         public string FirstName { get; set; }
         public string CoolName { get; set; }
 
@@ -15,7 +17,7 @@ namespace Kirkit.Score.Model.Logic
         public string Email { get; set; }
 
         [Required]
-        public decimal PhoneNumber { get; set; }
+        public long PhoneNumber { get; set; }
 
         [Range(1, 100)]
         public int Age { get; set; }

@@ -8,6 +8,21 @@ namespace Kirkit.Score.Model.Mapper
         {
             CreateMap<Logic.Player, Entity.Player>()
                 .ReverseMap();
+
+            CreateMap<Logic.Team, Entity.Team>()
+                .ReverseMap();
+
+            CreateMap<Logic.PlayerTeam, Entity.PlayerTeam>()
+               .ReverseMap();
+
+            CreateMap<Logic.Match, Entity.Match>()
+               .ReverseMap();
+
+            CreateMap<Logic.Innings, Entity.Innings>()
+               .ReverseMap();
+
+            CreateMap<Logic.PerBallUpdate, Entity.PerBallUpdate>()
+               .ReverseMap();
         }
     }
 }

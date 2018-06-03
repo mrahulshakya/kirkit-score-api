@@ -8,7 +8,7 @@ namespace Kirkit.Score.Model.Entity
     {
         public int WicketDetailId { get; set; }
         public int PerBallUpdateId { get; set; }
-        public bool WicketType { get; set; }
+        public int WicketType { get; set; }
         public string Details { get; set; }
         public int? WicketOwnerId { get; set; }
         public int? FielderId { get; set; }
